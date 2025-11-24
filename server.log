@@ -1,0 +1,7 @@
+
+> boot-server-ts@1.0.0 dev
+> npx tsc && node dist/index.js
+
+Server is running at http://localhost:8080
+Hits: 1
+Hits: 4
