@@ -11,9 +11,9 @@ export let config = {
 //app.use(middlewareMetricsInc);
 app.use("/app", middlewareMetricsInc, express.static("./src/app"));
 app.use(middlewareLogResponses);
-app.get("/healthz", middlewareLogResponses, handlerReadiness);
-app.get("/metrics", logMetrics);
-app.get("/reset", resetMetricsHandler);
+app.get("/api/healthz", middlewareLogResponses, handlerReadiness);
+app.get("/admin/metrics", logMetrics);
+app.get("/admin/reset", resetMetricsHandler);
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });

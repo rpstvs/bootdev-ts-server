@@ -13,9 +13,11 @@ export let config: APIConfig = {
 //app.use(middlewareMetricsInc);
 app.use("/app", middlewareMetricsInc, express.static("./src/app"));
 app.use(middlewareLogResponses);
-app.get("/healthz", middlewareLogResponses, handlerReadiness);
-app.get("/metrics", logMetrics);
-app.get("/reset", resetMetricsHandler);
+app.get("/api/healthz", middlewareLogResponses, handlerReadiness);
+app.get("/admin/metrics", logMetrics);
+app.post("/admin/reset", resetMetricsHandler);
+
+app.post("/api/validate_chirp", handleChirpValidate);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);

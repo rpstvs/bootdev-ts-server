@@ -3,5 +3,6 @@
 > npx tsc && node dist/index.js
 
 Server is running at http://localhost:8080
-Hits: 1
-Hits: 4
+Hits: 0
+Hits: 2
+Hits: 8
