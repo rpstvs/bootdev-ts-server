@@ -3,6 +3,7 @@ import { handlerReadiness } from "./api/readiness.js";
 import { middlewareLogResponses } from "./middleware/logger.js";
 import { middlewareMetricsInc } from "./middleware/Metrics.js";
 import { logMetrics, resetMetricsHandler } from "./api/metrics_handler.js";
+import { handleChirpValidate } from "./api/handler_validate_chirp.js";
 const app = express();
 const PORT = 8080;
 export let config = {
@@ -13,7 +14,8 @@ app.use("/app", middlewareMetricsInc, express.static("./src/app"));
 app.use(middlewareLogResponses);
 app.get("/api/healthz", middlewareLogResponses, handlerReadiness);
 app.get("/admin/metrics", logMetrics);
-app.get("/admin/reset", resetMetricsHandler);
+app.post("/admin/reset", resetMetricsHandler);
+app.post("/api/validate_chirp", handleChirpValidate);
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });

@@ -4,6 +4,7 @@ import { middlewareLogResponses } from "./middleware/logger.js";
 import { APIConfig } from "./config.js";
 import { middlewareMetricsInc } from "./middleware/Metrics.js";
 import { logMetrics, resetMetricsHandler } from "./api/metrics_handler.js";
+import { handleChirpValidate } from "./api/handler_validate_chirp.js";
 
 const app = express();
 const PORT = 8080;
