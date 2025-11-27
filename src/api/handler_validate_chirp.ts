@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { respondWithError, respondWithJson } from "./json";
+import { respondWithError, respondWithJson } from "./json.js";
 
 export async function handleChirpValidate(req: Request, res: Response) {
   type parameters = {
