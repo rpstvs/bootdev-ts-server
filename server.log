@@ -3,6 +3,4 @@
 > npx tsc && node dist/index.js
 
 Server is running at http://localhost:8080
-[NON-OK] GET /admin/reset - Status: 404
-Hits: 0
-Hits: 2
+[NON-OK] POST /api/validate_chirp - Status: 500
