@@ -1,13 +1,53 @@
 import { Request, Response, NextFunction } from "express";
+import { respondWithError } from "./json.js";
 
 export function errorHandler(
   err: Error,
-  req: Request,
+  _: Request,
   res: Response,
-  next: NextFunction
+  __: NextFunction
 ) {
-  console.error("Uh oh, spaghetti-o");
-  res.status(500).json({
-    error: "Something went wrong on our end",
-  });
+  let status = 500;
+  let message = "Chirp is too long. Max length is 140";
+
+  console.log(err.message);
+  if (err instanceof BadRequestError) {
+    status = 400;
+    message = err.message;
+  } else if (err instanceof UserNotAuthenticatedError) {
+    status = 401;
+    message = err.message;
+  } else if (err instanceof UserForbiddenError) {
+    status = 403;
+    message = err.message;
+  } else if (err instanceof NotFoundError) {
+    status = 404;
+    message = err.message;
+  }
+
+  respondWithError(res, status, message);
+}
+
+export class BadRequestError extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export class UserNotAuthenticatedError extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export class UserForbiddenError extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export class NotFoundError extends Error {
+  constructor(message: string) {
+    super(message);
+  }
 }

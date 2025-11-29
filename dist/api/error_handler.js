@@ -1,6 +1,15 @@
-export function errorHandler(err, req, res, next) {
-    console.error("Uh oh, spaghetti-o");
-    res.status(500).json({
-        error: "Boots has fallen",
-    });
+import { respondWithError } from "./json.js";
+export function errorHandler(err, _, res, __) {
+    let status = 400;
+    let message = "Chirp is too long. Max length is 140";
+    console.log(err.message);
+    if (err instanceof NotFoundError) {
+        res.status(404).send("Not Found");
+    }
+    respondWithError(res, status, message);
+}
+class NotFoundError extends Error {
+    constructor(message) {
+        super(message);
+    }
 }
